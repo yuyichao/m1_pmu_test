@@ -22,3 +22,5 @@ add_executable(test_br_indirect_call test_br_indirect_call.cpp)
 
 add_executable(test_load test_load.cpp)
 add_executable(test_store test_store.cpp)
+
+add_library(pmu_test SHARED libtests.cpp)
