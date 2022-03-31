@@ -95,13 +95,13 @@ struct perf_res {
     perf_res(Cb &&cb, int icestorm_core, int firestorm_core)
     {
         thread_pin(icestorm_core);
+        fprintf(stderr, "Running on icestorm\n");
         for (int evt = 0; evt < 256; evt++) {
-            fprintf(stderr, "Running %02x on icestorm\n", evt);
             icestorm_res.push_back(perf_run_rep(cb, 6, evt));
         }
         thread_pin(firestorm_core);
+        fprintf(stderr, "Running on firestorm\n");
         for (int evt = 0; evt < 256; evt++) {
-            fprintf(stderr, "Running %02x on firestorm\n", evt);
             firestorm_res.push_back(perf_run_rep(cb, 7, evt));
         }
     }
