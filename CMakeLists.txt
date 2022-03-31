@@ -19,3 +19,6 @@ add_executable(test_br_call test_br_call.cpp)
 add_executable(test_br_call_noret test_br_call_noret.cpp)
 add_executable(test_br_indirect test_br_indirect.cpp)
 add_executable(test_br_indirect_call test_br_indirect_call.cpp)
+
+add_executable(test_load test_load.cpp)
+add_executable(test_store test_store.cpp)
