@@ -59,6 +59,9 @@ function save_global_summary(gs, dir)
     save_evtlist_csv(sort!(collect(gs.global_zero)), joinpath(dir, "global_zero.csv"))
     save_evtlist_csv(sort!(collect(gs.loop_zero)), joinpath(dir, "loop_zero.csv"))
     save_evtlist_csv(sort!(collect(gs.cycle_like)), joinpath(dir, "cycle_like.csv"))
+    save_evtlist_csv(setdiff(0:255, gs.global_zero), joinpath(dir, "global_non_zero.csv"))
+    save_evtlist_csv(setdiff(0:255, gs.global_zero, gs.loop_zero),
+                     joinpath(dir, "loop_non_zero.csv"))
 end
 
 function scan_all(dir)
