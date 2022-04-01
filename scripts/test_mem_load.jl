@@ -38,8 +38,8 @@ function run_all_size(sz)
     mkpath(dir_rand, mode=0o755)
     for i in 1:1000
         println("Attempt: $i")
-        run_and_save(joinpath(dir_reg, "$(i - 1).csv"), false)
-        run_and_save(joinpath(dir_rand, "$(i - 1).csv"), true)
+        run_and_save(joinpath(dir_reg, "$(i - 1).csv"), false, sz)
+        run_and_save(joinpath(dir_rand, "$(i - 1).csv"), true, sz)
     end
 end
 
