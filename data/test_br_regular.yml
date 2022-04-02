@@ -1,0 +1,6 @@
+inst_ldrsb: 1
+inst_bcond: 2
+inst_nop: 0.5
+inst_addx: 1
+inst_cmpx: 1
+br_not: 0.5

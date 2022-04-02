@@ -1,0 +1,17 @@
+inst_movw_same: 1
+inst_addw: 1
+inst_ldrw_reg_offset: 1
+inst_cmpw: 1
+inst_bcond: 1
+load_worksize: 29360128
+load_l1: 1
+load_l2: 1
+load_l3: 1
+load_mem: 1
+load_l1rand_ice: 0.002232142857142857
+load_l1rand_fire: 0.004464285714285714
+load_l2rand_ice: 0.140625
+load_l2rand_fire: 0.42410714285714285
+load_l3rand_ice: 0.42857142857142855
+load_l3rand_fire: 0.14285714285714285
+load_memrand: 0.4285714285714286

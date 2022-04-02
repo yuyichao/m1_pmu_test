@@ -1,0 +1,6 @@
+inst_ldrx: 1
+inst_stxrx: 1
+inst_addw: 1
+inst_cmpw: 1
+inst_bcond: 1
+stx_fail: 1

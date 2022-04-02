@@ -1,0 +1,8 @@
+inst_addw: 1
+inst_bl: 1
+inst_adrp: 2
+inst_addx: 2
+inst_br: 1
+inst_ret: 1
+inst_cmpw: 1
+inst_bcond: 1

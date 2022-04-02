@@ -1,0 +1,4 @@
+inst_ldpq: 1
+inst_addw: 1
+inst_cmpw: 1
+inst_bcond: 1

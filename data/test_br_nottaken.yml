@@ -1,0 +1,5 @@
+inst_cmpx: 1
+inst_bcond: 2
+inst_addw: 1
+inst_cmpw: 1
+br_not: 1

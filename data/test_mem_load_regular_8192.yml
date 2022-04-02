@@ -1,0 +1,7 @@
+inst_movw_same: 1
+inst_addw: 1
+inst_ldrw_reg_offset: 1
+inst_cmpw: 1
+inst_bcond: 1
+load_worksize: 32768
+load_l1: 1
