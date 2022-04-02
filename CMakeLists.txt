@@ -7,6 +7,8 @@ set(CMAKE_CXX_FLAGS "-O3 -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter $
 set(CMAKE_CXX_STANDARD 17)
 add_definitions(-D_GNU_SOURCE -UNDEBUG)
 
+add_executable(print_cache print_cache.cpp)
+
 add_executable(test_lxsx test_lxsx.cpp)
 add_executable(test_lxsn test_lxsn.cpp)
 add_executable(test_lnsx test_lnsx.cpp)
