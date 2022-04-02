@@ -1,27 +1,14 @@
 //
 
-#include "pmu_utils.h"
+#include "libtests.h"
 
-static int icestorm_core = 0;
-static int firestorm_core = 0;
+int icestorm_core = 0;
+int firestorm_core = 0;
 
 extern "C" void set_cores(int ice, int fire)
 {
     icestorm_core = ice;
     firestorm_core = fire;
-}
-
-template<typename Cb>
-static void run_multi(Cb &&cb, int n, int64_t *ice_res, int64_t *fire_res)
-{
-    thread_pin(icestorm_core);
-    for (int evt = 0; evt < 256; evt++) {
-        ice_res[evt] = perf_run(cb, n, 6, evt);
-    }
-    thread_pin(firestorm_core);
-    for (int evt = 0; evt < 256; evt++) {
-        fire_res[evt] = perf_run(cb, n, 7, evt);
-    }
 }
 
 extern "C" void branch_test(const int8_t *conds, int n,
