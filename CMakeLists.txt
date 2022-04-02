@@ -27,3 +27,17 @@ add_library(pmu_test SHARED libtests.cpp)
 
 add_executable(test_br_call2 test_br_call2.cpp)
 add_executable(test_br_call2_noret test_br_call2_noret.cpp)
+
+add_executable(test_load_pair test_load_pair.cpp)
+add_executable(test_load_pair32 test_load_pair32.cpp)
+
+add_executable(test_store_pair test_store_pair.cpp)
+add_executable(test_store_pair32 test_store_pair32.cpp)
+
+add_executable(test_load_pair_fp32 test_load_pair_fp32.cpp)
+add_executable(test_load_pair_fp64 test_load_pair_fp64.cpp)
+add_executable(test_load_pair_fp128 test_load_pair_fp128.cpp)
+
+add_executable(test_store_pair_fp32 test_store_pair_fp32.cpp)
+add_executable(test_store_pair_fp64 test_store_pair_fp64.cpp)
+add_executable(test_store_pair_fp128 test_store_pair_fp128.cpp)
