@@ -1,4 +1,5 @@
 inst_addw: 1.0
 inst_bcond: 1.0
 inst_cmpw: 1.0
+inst_movx_const: 2.0
 inst_caspx: 1.0

@@ -158,8 +158,8 @@ kernel_cas_w:
         add x2, x2, :lo12:.Lgvbuffer
         mov w1, 0
         mov x3, 0
-        mov x4, 0
 .Lloop9:
+        mov x4, 0
         cas w4, w3, [x2]
         add w1, w1, 1
         cmp w1, w0
@@ -197,9 +197,9 @@ kernel_casp_w:
         mov w1, 0
         mov x2, 0
         mov x3, 0
+.Lloop11:
         mov x4, 0
         mov x5, 0
-.Lloop11:
         casp w4, w5, w2, w3, [x6]
         add w1, w1, 1
         cmp w1, w0
@@ -238,8 +238,8 @@ kernel_cas_x:
         add x2, x2, :lo12:.Lgvbuffer
         mov w1, 0
         mov x3, 0
-        mov x4, 0
 .Lloop13:
+        mov x4, 0
         cas x4, x3, [x2]
         add w1, w1, 1
         cmp w1, w0
@@ -277,9 +277,9 @@ kernel_casp_x:
         mov w1, 0
         mov x2, 0
         mov x3, 0
+.Lloop15:
         mov x4, 0
         mov x5, 0
-.Lloop15:
         casp x4, x5, x2, x3, [x6]
         add w1, w1, 1
         cmp w1, w0
@@ -318,8 +318,8 @@ kernel_casa_w:
         add x2, x2, :lo12:.Lgvbuffer
         mov w1, 0
         mov x3, 0
-        mov x4, 0
 .Lloop17:
+        mov x4, 0
         casa w4, w3, [x2]
         add w1, w1, 1
         cmp w1, w0
@@ -357,9 +357,9 @@ kernel_caspa_w:
         mov w1, 0
         mov x2, 0
         mov x3, 0
+.Lloop19:
         mov x4, 0
         mov x5, 0
-.Lloop19:
         caspa w4, w5, w2, w3, [x6]
         add w1, w1, 1
         cmp w1, w0
@@ -398,8 +398,8 @@ kernel_casa_x:
         add x2, x2, :lo12:.Lgvbuffer
         mov w1, 0
         mov x3, 0
-        mov x4, 0
 .Lloop21:
+        mov x4, 0
         casa x4, x3, [x2]
         add w1, w1, 1
         cmp w1, w0
@@ -437,9 +437,9 @@ kernel_caspa_x:
         mov w1, 0
         mov x2, 0
         mov x3, 0
+.Lloop23:
         mov x4, 0
         mov x5, 0
-.Lloop23:
         caspa x4, x5, x2, x3, [x6]
         add w1, w1, 1
         cmp w1, w0
@@ -478,8 +478,8 @@ kernel_casl_w:
         add x2, x2, :lo12:.Lgvbuffer
         mov w1, 0
         mov x3, 0
-        mov x4, 0
 .Lloop25:
+        mov x4, 0
         casl w4, w3, [x2]
         add w1, w1, 1
         cmp w1, w0
@@ -517,9 +517,9 @@ kernel_caspl_w:
         mov w1, 0
         mov x2, 0
         mov x3, 0
+.Lloop27:
         mov x4, 0
         mov x5, 0
-.Lloop27:
         caspl w4, w5, w2, w3, [x6]
         add w1, w1, 1
         cmp w1, w0
@@ -558,8 +558,8 @@ kernel_casl_x:
         add x2, x2, :lo12:.Lgvbuffer
         mov w1, 0
         mov x3, 0
-        mov x4, 0
 .Lloop29:
+        mov x4, 0
         casl x4, x3, [x2]
         add w1, w1, 1
         cmp w1, w0
@@ -597,9 +597,9 @@ kernel_caspl_x:
         mov w1, 0
         mov x2, 0
         mov x3, 0
+.Lloop31:
         mov x4, 0
         mov x5, 0
-.Lloop31:
         caspl x4, x5, x2, x3, [x6]
         add w1, w1, 1
         cmp w1, w0
@@ -638,8 +638,8 @@ kernel_casal_w:
         add x2, x2, :lo12:.Lgvbuffer
         mov w1, 0
         mov x3, 0
-        mov x4, 0
 .Lloop33:
+        mov x4, 0
         casal w4, w3, [x2]
         add w1, w1, 1
         cmp w1, w0
@@ -677,9 +677,9 @@ kernel_caspal_w:
         mov w1, 0
         mov x2, 0
         mov x3, 0
+.Lloop35:
         mov x4, 0
         mov x5, 0
-.Lloop35:
         caspal w4, w5, w2, w3, [x6]
         add w1, w1, 1
         cmp w1, w0
@@ -718,8 +718,8 @@ kernel_casal_x:
         add x2, x2, :lo12:.Lgvbuffer
         mov w1, 0
         mov x3, 0
-        mov x4, 0
 .Lloop37:
+        mov x4, 0
         casal x4, x3, [x2]
         add w1, w1, 1
         cmp w1, w0
@@ -757,9 +757,9 @@ kernel_caspal_x:
         mov w1, 0
         mov x2, 0
         mov x3, 0
+.Lloop39:
         mov x4, 0
         mov x5, 0
-.Lloop39:
         caspal x4, x5, x2, x3, [x6]
         add w1, w1, 1
         cmp w1, w0

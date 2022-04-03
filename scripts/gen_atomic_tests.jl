@@ -34,15 +34,15 @@ function add_cas_test(grp, suffix, regprefix)
         add x2, x2, :lo12:.Lgvbuffer
         mov w1, 0
         mov x3, 0
-        mov x4, 0
 .Lloop%=:
+        mov x4, 0
         cas$(suffix) $(regprefix)4, $(regprefix)3, [x2]
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop%=
         ret
 """, Dict("inst_cas$(suffix)$(regprefix)"=>1, "inst_addw"=>1,
-          "inst_cmpw"=>1, "inst_bcond"=>1))
+          "inst_cmpw"=>1, "inst_movx_const"=>1, "inst_bcond"=>1))
 end
 
 function add_cas_fail_test(grp, suffix, regprefix)
@@ -71,16 +71,16 @@ function add_casp_test(grp, suffix, regprefix)
         mov w1, 0
         mov x2, 0
         mov x3, 0
+.Lloop%=:
         mov x4, 0
         mov x5, 0
-.Lloop%=:
         casp$(suffix) $(regprefix)4, $(regprefix)5, $(regprefix)2, $(regprefix)3, [x6]
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop%=
         ret
 """, Dict("inst_casp$(suffix)$(regprefix)"=>1, "inst_addw"=>1,
-          "inst_cmpw"=>1, "inst_bcond"=>1))
+          "inst_cmpw"=>1, "inst_movx_const"=>2, "inst_bcond"=>1))
 end
 
 function add_casp_fail_test(grp, suffix, regprefix)
