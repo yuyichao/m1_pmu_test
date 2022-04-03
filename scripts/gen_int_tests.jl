@@ -8,7 +8,7 @@ function add_nop_test(grp, n)
     add_test!(grp, "nop_$(n)",
               """
         mov w1, 0
-.Lloop%=:""" * "        nop\n"^n * """
+.Lloop%=:\n""" * "        nop\n"^n * """
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop%=
@@ -21,7 +21,7 @@ function add_add_test(grp, n)
               """
         mov w1, 0
         mov x2, 0
-.Lloop%=:""" * "        add x3, x2, x2\n"^n * """
+.Lloop%=:\n""" * "        add x3, x2, x2\n"^n * """
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop%=
@@ -34,7 +34,7 @@ function add_mul_test(grp, n)
               """
         mov w1, 0
         mov x2, 0
-.Lloop%=:""" * "        mul x3, x2, x2\n"^n * """
+.Lloop%=:\n""" * "        mul x3, x2, x2\n"^n * """
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop%=
@@ -47,7 +47,7 @@ function add_udiv_test(grp, n)
               """
         mov w1, 0
         mov x2, 2
-.Lloop%=:""" * "        udiv x3, x2, x2\n"^n * """
+.Lloop%=:\n""" * "        udiv x3, x2, x2\n"^n * """
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop%=
@@ -62,7 +62,7 @@ function add_madd_test(grp, n)
         mov x2, 2
         mov x3, 1
         mov x4, 5
-.Lloop%=:""" * "        madd x5, x2, x3, x4\n"^n * """
+.Lloop%=:\n""" * "        madd x5, x2, x3, x4\n"^n * """
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop%=
@@ -76,7 +76,7 @@ function add_crc32c_test(grp, n)
         mov w1, 0
         mov x2, 2
         mov x3, 1
-.Lloop%=:""" * "        crc32c w4, w2, x3\n"^n * """
+.Lloop%=:\n""" * "        crc32cx w4, w2, x3\n"^n * """
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop%=

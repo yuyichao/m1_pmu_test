@@ -11,7 +11,8 @@
         .type        kernel_nop_1, %function
 kernel_nop_1:
         mov w1, 0
-.Lloop1:        nop
+.Lloop1:
+        nop
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop1
@@ -26,7 +27,8 @@ kernel_nop_1:
 kernel_addx_1:
         mov w1, 0
         mov x2, 0
-.Lloop2:        add x3, x2, x2
+.Lloop2:
+        add x3, x2, x2
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop2
@@ -41,7 +43,8 @@ kernel_addx_1:
 kernel_mulx_1:
         mov w1, 0
         mov x2, 0
-.Lloop3:        mul x3, x2, x2
+.Lloop3:
+        mul x3, x2, x2
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop3
@@ -56,7 +59,8 @@ kernel_mulx_1:
 kernel_udivx_1:
         mov w1, 0
         mov x2, 2
-.Lloop4:        udiv x3, x2, x2
+.Lloop4:
+        udiv x3, x2, x2
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop4
@@ -73,7 +77,8 @@ kernel_maddx_1:
         mov x2, 2
         mov x3, 1
         mov x4, 5
-.Lloop5:        madd x5, x2, x3, x4
+.Lloop5:
+        madd x5, x2, x3, x4
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop5
@@ -89,7 +94,8 @@ kernel_crc32cx_1:
         mov w1, 0
         mov x2, 2
         mov x3, 1
-.Lloop6:        crc32c w4, w2, x3
+.Lloop6:
+        crc32cx w4, w2, x3
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop6
@@ -103,7 +109,8 @@ kernel_crc32cx_1:
         .type        kernel_nop_4, %function
 kernel_nop_4:
         mov w1, 0
-.Lloop7:        nop
+.Lloop7:
+        nop
         nop
         nop
         nop
@@ -121,7 +128,8 @@ kernel_nop_4:
 kernel_addx_4:
         mov w1, 0
         mov x2, 0
-.Lloop8:        add x3, x2, x2
+.Lloop8:
+        add x3, x2, x2
         add x3, x2, x2
         add x3, x2, x2
         add x3, x2, x2
@@ -139,7 +147,8 @@ kernel_addx_4:
 kernel_mulx_4:
         mov w1, 0
         mov x2, 0
-.Lloop9:        mul x3, x2, x2
+.Lloop9:
+        mul x3, x2, x2
         mul x3, x2, x2
         mul x3, x2, x2
         mul x3, x2, x2
@@ -157,7 +166,8 @@ kernel_mulx_4:
 kernel_udivx_4:
         mov w1, 0
         mov x2, 2
-.Lloop10:        udiv x3, x2, x2
+.Lloop10:
+        udiv x3, x2, x2
         udiv x3, x2, x2
         udiv x3, x2, x2
         udiv x3, x2, x2
@@ -177,7 +187,8 @@ kernel_maddx_4:
         mov x2, 2
         mov x3, 1
         mov x4, 5
-.Lloop11:        madd x5, x2, x3, x4
+.Lloop11:
+        madd x5, x2, x3, x4
         madd x5, x2, x3, x4
         madd x5, x2, x3, x4
         madd x5, x2, x3, x4
@@ -196,10 +207,11 @@ kernel_crc32cx_4:
         mov w1, 0
         mov x2, 2
         mov x3, 1
-.Lloop12:        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
+.Lloop12:
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop12
@@ -213,7 +225,8 @@ kernel_crc32cx_4:
         .type        kernel_nop_16, %function
 kernel_nop_16:
         mov w1, 0
-.Lloop13:        nop
+.Lloop13:
+        nop
         nop
         nop
         nop
@@ -243,7 +256,8 @@ kernel_nop_16:
 kernel_addx_16:
         mov w1, 0
         mov x2, 0
-.Lloop14:        add x3, x2, x2
+.Lloop14:
+        add x3, x2, x2
         add x3, x2, x2
         add x3, x2, x2
         add x3, x2, x2
@@ -273,7 +287,8 @@ kernel_addx_16:
 kernel_mulx_16:
         mov w1, 0
         mov x2, 0
-.Lloop15:        mul x3, x2, x2
+.Lloop15:
+        mul x3, x2, x2
         mul x3, x2, x2
         mul x3, x2, x2
         mul x3, x2, x2
@@ -303,7 +318,8 @@ kernel_mulx_16:
 kernel_udivx_16:
         mov w1, 0
         mov x2, 2
-.Lloop16:        udiv x3, x2, x2
+.Lloop16:
+        udiv x3, x2, x2
         udiv x3, x2, x2
         udiv x3, x2, x2
         udiv x3, x2, x2
@@ -335,7 +351,8 @@ kernel_maddx_16:
         mov x2, 2
         mov x3, 1
         mov x4, 5
-.Lloop17:        madd x5, x2, x3, x4
+.Lloop17:
+        madd x5, x2, x3, x4
         madd x5, x2, x3, x4
         madd x5, x2, x3, x4
         madd x5, x2, x3, x4
@@ -366,22 +383,23 @@ kernel_crc32cx_16:
         mov w1, 0
         mov x2, 2
         mov x3, 1
-.Lloop18:        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
+.Lloop18:
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop18
@@ -395,7 +413,8 @@ kernel_crc32cx_16:
         .type        kernel_nop_64, %function
 kernel_nop_64:
         mov w1, 0
-.Lloop19:        nop
+.Lloop19:
+        nop
         nop
         nop
         nop
@@ -473,7 +492,8 @@ kernel_nop_64:
 kernel_addx_64:
         mov w1, 0
         mov x2, 0
-.Lloop20:        add x3, x2, x2
+.Lloop20:
+        add x3, x2, x2
         add x3, x2, x2
         add x3, x2, x2
         add x3, x2, x2
@@ -551,7 +571,8 @@ kernel_addx_64:
 kernel_mulx_64:
         mov w1, 0
         mov x2, 0
-.Lloop21:        mul x3, x2, x2
+.Lloop21:
+        mul x3, x2, x2
         mul x3, x2, x2
         mul x3, x2, x2
         mul x3, x2, x2
@@ -629,7 +650,8 @@ kernel_mulx_64:
 kernel_udivx_64:
         mov w1, 0
         mov x2, 2
-.Lloop22:        udiv x3, x2, x2
+.Lloop22:
+        udiv x3, x2, x2
         udiv x3, x2, x2
         udiv x3, x2, x2
         udiv x3, x2, x2
@@ -709,7 +731,8 @@ kernel_maddx_64:
         mov x2, 2
         mov x3, 1
         mov x4, 5
-.Lloop23:        madd x5, x2, x3, x4
+.Lloop23:
+        madd x5, x2, x3, x4
         madd x5, x2, x3, x4
         madd x5, x2, x3, x4
         madd x5, x2, x3, x4
@@ -788,70 +811,71 @@ kernel_crc32cx_64:
         mov w1, 0
         mov x2, 2
         mov x3, 1
-.Lloop24:        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
-        crc32c w4, w2, x3
+.Lloop24:
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
+        crc32cx w4, w2, x3
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop24
