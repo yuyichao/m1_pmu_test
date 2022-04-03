@@ -33,7 +33,7 @@ function run_all(idx_begin, idx_end)
     end
     for i in idx_begin:idx_end
         println("Index: $i")
-        for (key, val) in testgrp_atomic
+        @time for (key, val) in testgrp_atomic
             if i % 100 == 0
                 println("Running: $key")
             end
