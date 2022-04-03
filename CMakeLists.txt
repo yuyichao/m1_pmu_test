@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(m1_pmu_test)
+project(m1_pmu_test LANGUAGES C CXX ASM)
 
 set(CMAKE_C_FLAGS "-O3 -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -march=armv8.5-a+crypto ${CMAKE_C_FLAGS}")
 set(CMAKE_CXX_FLAGS "-O3 -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -march=armv8.5-a+crypto ${CMAKE_CXX_FLAGS}")

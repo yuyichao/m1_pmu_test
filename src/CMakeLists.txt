@@ -18,7 +18,9 @@ add_executable(test_br_indirect_call test_br_indirect_call.cpp)
 add_executable(test_load test_load.cpp)
 add_executable(test_store test_store.cpp)
 
-add_library(pmu_test SHARED libtests.cpp)
+add_library(pmu_test SHARED libtests.cpp
+  libtests_atomic.cpp
+  libtests_atomic.s)
 
 add_executable(test_br_call2 test_br_call2.cpp)
 add_executable(test_br_call2_noret test_br_call2_noret.cpp)

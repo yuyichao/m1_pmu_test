@@ -1,0 +1,4 @@
+inst_addw: 1.0
+inst_bcond: 1.0
+inst_caspalx: 1.0
+inst_cmpw: 1.0
