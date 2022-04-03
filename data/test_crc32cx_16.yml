@@ -1,0 +1,4 @@
+inst_crc32cx: 16.0
+inst_addw: 1.0
+inst_bcond: 1.0
+inst_cmpw: 1.0
