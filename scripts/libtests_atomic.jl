@@ -208,111 +208,111 @@ runtest_ldaddal_x(n, ice_res, fire_res) =
     ccall((:runtest_ldaddal_x, "./libpmu_test.so"),
           Cvoid, (Cint, Ptr{Int64}, Ptr{Int64}), n, ice_res, fire_res)
 
-const testgrp_atomic = [
+const testgrp_atomic = Dict{String,Function}(
 
-    runtest_swp_w,
+    "swp_w"=>runtest_swp_w,
 
-    runtest_swp_x,
+    "swp_x"=>runtest_swp_x,
 
-    runtest_swpa_w,
+    "swpa_w"=>runtest_swpa_w,
 
-    runtest_swpa_x,
+    "swpa_x"=>runtest_swpa_x,
 
-    runtest_swpl_w,
+    "swpl_w"=>runtest_swpl_w,
 
-    runtest_swpl_x,
+    "swpl_x"=>runtest_swpl_x,
 
-    runtest_swpal_w,
+    "swpal_w"=>runtest_swpal_w,
 
-    runtest_swpal_x,
+    "swpal_x"=>runtest_swpal_x,
 
-    runtest_cas_w,
+    "cas_w"=>runtest_cas_w,
 
-    runtest_cas_fail_w,
+    "cas_fail_w"=>runtest_cas_fail_w,
 
-    runtest_casp_w,
+    "casp_w"=>runtest_casp_w,
 
-    runtest_casp_fail_w,
+    "casp_fail_w"=>runtest_casp_fail_w,
 
-    runtest_cas_x,
+    "cas_x"=>runtest_cas_x,
 
-    runtest_cas_fail_x,
+    "cas_fail_x"=>runtest_cas_fail_x,
 
-    runtest_casp_x,
+    "casp_x"=>runtest_casp_x,
 
-    runtest_casp_fail_x,
+    "casp_fail_x"=>runtest_casp_fail_x,
 
-    runtest_casa_w,
+    "casa_w"=>runtest_casa_w,
 
-    runtest_casa_fail_w,
+    "casa_fail_w"=>runtest_casa_fail_w,
 
-    runtest_caspa_w,
+    "caspa_w"=>runtest_caspa_w,
 
-    runtest_caspa_fail_w,
+    "caspa_fail_w"=>runtest_caspa_fail_w,
 
-    runtest_casa_x,
+    "casa_x"=>runtest_casa_x,
 
-    runtest_casa_fail_x,
+    "casa_fail_x"=>runtest_casa_fail_x,
 
-    runtest_caspa_x,
+    "caspa_x"=>runtest_caspa_x,
 
-    runtest_caspa_fail_x,
+    "caspa_fail_x"=>runtest_caspa_fail_x,
 
-    runtest_casl_w,
+    "casl_w"=>runtest_casl_w,
 
-    runtest_casl_fail_w,
+    "casl_fail_w"=>runtest_casl_fail_w,
 
-    runtest_caspl_w,
+    "caspl_w"=>runtest_caspl_w,
 
-    runtest_caspl_fail_w,
+    "caspl_fail_w"=>runtest_caspl_fail_w,
 
-    runtest_casl_x,
+    "casl_x"=>runtest_casl_x,
 
-    runtest_casl_fail_x,
+    "casl_fail_x"=>runtest_casl_fail_x,
 
-    runtest_caspl_x,
+    "caspl_x"=>runtest_caspl_x,
 
-    runtest_caspl_fail_x,
+    "caspl_fail_x"=>runtest_caspl_fail_x,
 
-    runtest_casal_w,
+    "casal_w"=>runtest_casal_w,
 
-    runtest_casal_fail_w,
+    "casal_fail_w"=>runtest_casal_fail_w,
 
-    runtest_caspal_w,
+    "caspal_w"=>runtest_caspal_w,
 
-    runtest_caspal_fail_w,
+    "caspal_fail_w"=>runtest_caspal_fail_w,
 
-    runtest_casal_x,
+    "casal_x"=>runtest_casal_x,
 
-    runtest_casal_fail_x,
+    "casal_fail_x"=>runtest_casal_fail_x,
 
-    runtest_caspal_x,
+    "caspal_x"=>runtest_caspal_x,
 
-    runtest_caspal_fail_x,
+    "caspal_fail_x"=>runtest_caspal_fail_x,
 
-    runtest_ldadd_w,
+    "ldadd_w"=>runtest_ldadd_w,
 
-    runtest_stadd_w,
+    "stadd_w"=>runtest_stadd_w,
 
-    runtest_ldadd_x,
+    "ldadd_x"=>runtest_ldadd_x,
 
-    runtest_stadd_x,
+    "stadd_x"=>runtest_stadd_x,
 
-    runtest_ldadda_w,
+    "ldadda_w"=>runtest_ldadda_w,
 
-    runtest_ldadda_x,
+    "ldadda_x"=>runtest_ldadda_x,
 
-    runtest_ldaddl_w,
+    "ldaddl_w"=>runtest_ldaddl_w,
 
-    runtest_staddl_w,
+    "staddl_w"=>runtest_staddl_w,
 
-    runtest_ldaddl_x,
+    "ldaddl_x"=>runtest_ldaddl_x,
 
-    runtest_staddl_x,
+    "staddl_x"=>runtest_staddl_x,
 
-    runtest_ldaddal_w,
+    "ldaddal_w"=>runtest_ldaddal_w,
 
-    runtest_ldaddal_x,
+    "ldaddal_x"=>runtest_ldaddal_x,
 
-]
+)
 

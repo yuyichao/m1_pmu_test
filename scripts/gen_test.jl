@@ -86,12 +86,12 @@ runtest_$(test.name)(n, ice_res, fire_res) =
 """)
         end
         println(fh, """
-const testgrp_$(grp.name) = [
+const testgrp_$(grp.name) = Dict{String,Function}(
 """)
         for test in grp.tests
-            println(fh, "    runtest_$(test.name),\n")
+            println(fh, "    \"$(test.name)\"=>runtest_$(test.name),\n")
         end
-        println(fh, "]\n")
+        println(fh, ")\n")
     end
 end
 
