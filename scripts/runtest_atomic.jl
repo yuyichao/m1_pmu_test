@@ -2,6 +2,8 @@
 
 include("libtests_atomic.jl")
 
+using Printf
+
 function run_loops(f, loops)
     nloops = length(loops)
     res = zeros(Int64, 256, length(loops) * 2)
