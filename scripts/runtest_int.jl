@@ -17,7 +17,7 @@ end
 function run_and_save!(f, loops, res, file)
     open(file, "w") do fh
         run_loops!(f, loops, res)
-        println(fh, "evt,1,1,100,100,10000,10000,1000000,1000000")
+        println(fh, "evt," * join(["$(l),$(l)" for l in loops], ","))
         for i in 1:size(res, 1)
             @printf(fh, "%02x", i - 1)
             for j in 1:size(res, 2)
