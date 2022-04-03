@@ -29,7 +29,7 @@ end
 function gen_asm_src(grp::InstTestGroup, file)
     counter = 0
     open(file, "w") do fh
-        println(fh, """
+        print(fh, """
         .arch armv8.5-a+crypto
         .bss
         .align 6
@@ -38,15 +38,17 @@ function gen_asm_src(grp::InstTestGroup, file)
 """)
         for test in grp.tests
             counter += 1
-            println(fh, """
+            print(fh, """
+
         .text
         .align        2
         .p2align 4,,11
+        .global      kernel_$(test.name)
         .type        kernel_$(test.name), %function
 kernel_$(test.name):
 """)
-            println(fh, replace(test.asm, "%="=>"$(counter)"))
-            println(fh, """
+            print(fh, replace(test.asm, "%="=>"$(counter)"))
+            print(fh, """
         .size        kernel_$(test.name), .-kernel_$(test.name)
 """)
         end
@@ -55,14 +57,14 @@ end
 
 function gen_cpp_src(grp::InstTestGroup, file)
     open(file, "w") do fh
-        println(fh, """
+        print(fh, """
 //
 
 #include "libtests.h"
-
 """)
         for test in grp.tests
-            println(fh, """
+            print(fh, """
+
 extern "C" void kernel_$(test.name)(int n);
 extern "C" void runtest_$(test.name)(int n, int64_t *ice_res, int64_t *fire_res)
 {

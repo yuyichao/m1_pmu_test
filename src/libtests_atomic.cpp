@@ -2,7 +2,6 @@
 
 #include "libtests.h"
 
-
 extern "C" void kernel_swp_w(int n);
 extern "C" void runtest_swp_w(int n, int64_t *ice_res, int64_t *fire_res)
 {
@@ -314,4 +313,3 @@ extern "C" void runtest_ldaddal_x(int n, int64_t *ice_res, int64_t *fire_res)
 {
     run_multi(kernel_ldaddal_x, n, ice_res, fire_res);
 }
-
