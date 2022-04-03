@@ -1,8 +1,11 @@
 #!/usr/bin/julia
 
 include("libtests_atomic.jl")
+include("libtests.jl")
 
 using Printf
+
+set_cores(0, 4)
 
 function run_loops(f, loops)
     nloops = length(loops)
