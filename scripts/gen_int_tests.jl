@@ -93,8 +93,24 @@ for n in [1, 4, 16, 64]
     add_crc32c_test(grp, n)
 end
 
-function add_load_regoffset_test(grp)
-    add_test!(grp, "load_regoffset",
+function add_loadx_test(grp)
+    add_test!(grp, "loadx",
+              """
+        adrp x2, .Lgvbuffer
+        add x2, x2, :lo12:.Lgvbuffer
+        mov w1, 0
+        mov x3, 1
+.Lloop%=:
+        ldr x4, [x2]
+        add w1, w1, 1
+        cmp w1, w0
+        bne .Lloop%=
+        ret
+""", Dict("inst_ldrx"=>1, "inst_addw"=>1, "inst_cmpw"=>1, "inst_bcond"=>1))
+end
+
+function add_loadx_regoffset_test(grp)
+    add_test!(grp, "loadx_regoffset",
               """
         adrp x2, .Lgvbuffer
         add x2, x2, :lo12:.Lgvbuffer
@@ -110,8 +126,8 @@ function add_load_regoffset_test(grp)
 """, Dict("inst_add3x"=>1, "inst_ldrx"=>1, "inst_addw"=>1, "inst_cmpw"=>1, "inst_bcond"=>1))
 end
 
-function add_load_regoffset_addrmode_test(grp)
-    add_test!(grp, "load_regoffset_addrmode",
+function add_loadx_regoffset_addrmode_test(grp)
+    add_test!(grp, "loadx_regoffset_addrmode",
               """
         adrp x2, .Lgvbuffer
         add x2, x2, :lo12:.Lgvbuffer
@@ -126,7 +142,27 @@ function add_load_regoffset_addrmode_test(grp)
 """, Dict("inst_ldrx_regoffset"=>1, "inst_addw"=>1, "inst_cmpw"=>1, "inst_bcond"=>1))
 end
 
-add_load_regoffset_test(grp)
-add_load_regoffset_addrmode_test(grp)
+function add_loadx_regoffset_dup_addrmode_test(grp)
+    add_test!(grp, "loadx_regoffset_dup_addrmode",
+              """
+        adrp x2, .Lgvbuffer
+        add x2, x2, :lo12:.Lgvbuffer
+        mov w1, 0
+        mov x3, 1
+.Lloop%=:
+        add x4, x2, x3, lsl #3
+        ldr x4, [x2, x3, lsl #3]
+        add w1, w1, 1
+        cmp w1, w0
+        bne .Lloop%=
+        ret
+""", Dict("inst_add3x"=>1, "inst_ldrx_regoffset"=>1,
+          "inst_addw"=>1, "inst_cmpw"=>1, "inst_bcond"=>1))
+end
+
+add_loadx_test(grp)
+add_loadx_regoffset_test(grp)
+add_loadx_regoffset_addrmode_test(grp)
+add_loadx_regoffset_dup_addrmode_test(grp)
 
 gen_all(grp)

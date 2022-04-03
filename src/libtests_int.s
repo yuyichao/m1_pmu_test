@@ -885,36 +885,73 @@ kernel_crc32cx_64:
         .text
         .align        2
         .p2align 4,,11
-        .global      kernel_load_regoffset
-        .type        kernel_load_regoffset, %function
-kernel_load_regoffset:
+        .global      kernel_loadx
+        .type        kernel_loadx, %function
+kernel_loadx:
         adrp x2, .Lgvbuffer
         add x2, x2, :lo12:.Lgvbuffer
         mov w1, 0
         mov x3, 1
 .Lloop25:
-        add x4, x2, x3, lsl #3
-        ldr x4, [x4]
+        ldr x4, [x2]
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop25
         ret
-        .size        kernel_load_regoffset, .-kernel_load_regoffset
+        .size        kernel_loadx, .-kernel_loadx
 
         .text
         .align        2
         .p2align 4,,11
-        .global      kernel_load_regoffset_addrmode
-        .type        kernel_load_regoffset_addrmode, %function
-kernel_load_regoffset_addrmode:
+        .global      kernel_loadx_regoffset
+        .type        kernel_loadx_regoffset, %function
+kernel_loadx_regoffset:
         adrp x2, .Lgvbuffer
         add x2, x2, :lo12:.Lgvbuffer
         mov w1, 0
         mov x3, 1
 .Lloop26:
-        ldr x4, [x2, x3, lsl #3]
+        add x4, x2, x3, lsl #3
+        ldr x4, [x4]
         add w1, w1, 1
         cmp w1, w0
         bne .Lloop26
         ret
-        .size        kernel_load_regoffset_addrmode, .-kernel_load_regoffset_addrmode
+        .size        kernel_loadx_regoffset, .-kernel_loadx_regoffset
+
+        .text
+        .align        2
+        .p2align 4,,11
+        .global      kernel_loadx_regoffset_addrmode
+        .type        kernel_loadx_regoffset_addrmode, %function
+kernel_loadx_regoffset_addrmode:
+        adrp x2, .Lgvbuffer
+        add x2, x2, :lo12:.Lgvbuffer
+        mov w1, 0
+        mov x3, 1
+.Lloop27:
+        ldr x4, [x2, x3, lsl #3]
+        add w1, w1, 1
+        cmp w1, w0
+        bne .Lloop27
+        ret
+        .size        kernel_loadx_regoffset_addrmode, .-kernel_loadx_regoffset_addrmode
+
+        .text
+        .align        2
+        .p2align 4,,11
+        .global      kernel_loadx_regoffset_dup_addrmode
+        .type        kernel_loadx_regoffset_dup_addrmode, %function
+kernel_loadx_regoffset_dup_addrmode:
+        adrp x2, .Lgvbuffer
+        add x2, x2, :lo12:.Lgvbuffer
+        mov w1, 0
+        mov x3, 1
+.Lloop28:
+        add x4, x2, x3, lsl #3
+        ldr x4, [x2, x3, lsl #3]
+        add w1, w1, 1
+        cmp w1, w0
+        bne .Lloop28
+        ret
+        .size        kernel_loadx_regoffset_dup_addrmode, .-kernel_loadx_regoffset_dup_addrmode

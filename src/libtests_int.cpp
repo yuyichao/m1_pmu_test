@@ -146,14 +146,26 @@ extern "C" void runtest_crc32cx_64(int n, int64_t *ice_res, int64_t *fire_res)
     run_multi(kernel_crc32cx_64, n, ice_res, fire_res);
 }
 
-extern "C" void kernel_load_regoffset(int n);
-extern "C" void runtest_load_regoffset(int n, int64_t *ice_res, int64_t *fire_res)
+extern "C" void kernel_loadx(int n);
+extern "C" void runtest_loadx(int n, int64_t *ice_res, int64_t *fire_res)
 {
-    run_multi(kernel_load_regoffset, n, ice_res, fire_res);
+    run_multi(kernel_loadx, n, ice_res, fire_res);
 }
 
-extern "C" void kernel_load_regoffset_addrmode(int n);
-extern "C" void runtest_load_regoffset_addrmode(int n, int64_t *ice_res, int64_t *fire_res)
+extern "C" void kernel_loadx_regoffset(int n);
+extern "C" void runtest_loadx_regoffset(int n, int64_t *ice_res, int64_t *fire_res)
 {
-    run_multi(kernel_load_regoffset_addrmode, n, ice_res, fire_res);
+    run_multi(kernel_loadx_regoffset, n, ice_res, fire_res);
+}
+
+extern "C" void kernel_loadx_regoffset_addrmode(int n);
+extern "C" void runtest_loadx_regoffset_addrmode(int n, int64_t *ice_res, int64_t *fire_res)
+{
+    run_multi(kernel_loadx_regoffset_addrmode, n, ice_res, fire_res);
+}
+
+extern "C" void kernel_loadx_regoffset_dup_addrmode(int n);
+extern "C" void runtest_loadx_regoffset_dup_addrmode(int n, int64_t *ice_res, int64_t *fire_res)
+{
+    run_multi(kernel_loadx_regoffset_dup_addrmode, n, ice_res, fire_res);
 }

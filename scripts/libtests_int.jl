@@ -96,12 +96,20 @@ runtest_crc32cx_64(n, ice_res, fire_res) =
     ccall((:runtest_crc32cx_64, "./libpmu_test.so"),
           Cvoid, (Cint, Ptr{Int64}, Ptr{Int64}), n, ice_res, fire_res)
 
-runtest_load_regoffset(n, ice_res, fire_res) =
-    ccall((:runtest_load_regoffset, "./libpmu_test.so"),
+runtest_loadx(n, ice_res, fire_res) =
+    ccall((:runtest_loadx, "./libpmu_test.so"),
           Cvoid, (Cint, Ptr{Int64}, Ptr{Int64}), n, ice_res, fire_res)
 
-runtest_load_regoffset_addrmode(n, ice_res, fire_res) =
-    ccall((:runtest_load_regoffset_addrmode, "./libpmu_test.so"),
+runtest_loadx_regoffset(n, ice_res, fire_res) =
+    ccall((:runtest_loadx_regoffset, "./libpmu_test.so"),
+          Cvoid, (Cint, Ptr{Int64}, Ptr{Int64}), n, ice_res, fire_res)
+
+runtest_loadx_regoffset_addrmode(n, ice_res, fire_res) =
+    ccall((:runtest_loadx_regoffset_addrmode, "./libpmu_test.so"),
+          Cvoid, (Cint, Ptr{Int64}, Ptr{Int64}), n, ice_res, fire_res)
+
+runtest_loadx_regoffset_dup_addrmode(n, ice_res, fire_res) =
+    ccall((:runtest_loadx_regoffset_dup_addrmode, "./libpmu_test.so"),
           Cvoid, (Cint, Ptr{Int64}, Ptr{Int64}), n, ice_res, fire_res)
 
 const testgrp_int = Dict{String,Function}(
@@ -154,9 +162,13 @@ const testgrp_int = Dict{String,Function}(
 
     "crc32cx_64"=>runtest_crc32cx_64,
 
-    "load_regoffset"=>runtest_load_regoffset,
+    "loadx"=>runtest_loadx,
 
-    "load_regoffset_addrmode"=>runtest_load_regoffset_addrmode,
+    "loadx_regoffset"=>runtest_loadx_regoffset,
+
+    "loadx_regoffset_addrmode"=>runtest_loadx_regoffset_addrmode,
+
+    "loadx_regoffset_dup_addrmode"=>runtest_loadx_regoffset_dup_addrmode,
 
 )
 
