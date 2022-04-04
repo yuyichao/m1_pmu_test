@@ -1,0 +1,5 @@
+inst_addw: 1.0
+inst_bcond: 1.0
+inst_maddx: 1.0
+inst_cmpw: 1.0
+inst_ldrx_regoffset: 1.0
