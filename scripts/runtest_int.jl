@@ -40,7 +40,7 @@ function run_all(idx_begin, idx_end, loops)
                 println("Running: $key")
             end
             run_and_save!(val, loops, res,
-                         joinpath(@__DIR__, "..", "data", "test_$(key)", "$(i).csv"))
+                          joinpath(@__DIR__, "..", "data", "test_$(key)", "$(i).csv"))
         end
     end
 end
