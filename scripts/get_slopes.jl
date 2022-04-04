@@ -18,6 +18,9 @@ function resave_slopes(outfile, infile)
     open(outfile, "w") do fd
         println(fd, "evt,ice_mb,fire_mb")
         for i in 1:size(data, 1)
+            if data[i, 3] == 0 && data[i, 7] == 0
+                continue
+            end
             println(fd, "$(Int(data[i, 1])),$(str(data[i, 3])),$(str(data[i, 7]))")
         end
     end
