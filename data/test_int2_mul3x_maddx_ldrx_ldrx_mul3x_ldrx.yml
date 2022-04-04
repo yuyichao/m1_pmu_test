@@ -1,0 +1,6 @@
+inst_addw: 1.0
+inst_bcond: 1.0
+inst_maddx: 1.0
+inst_ldrx: 3.0
+inst_cmpw: 1.0
+inst_mul3x: 2.0
