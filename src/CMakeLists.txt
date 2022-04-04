@@ -23,6 +23,8 @@ add_library(pmu_test SHARED libtests.cpp
   libtests_atomic.s
   libtests_int.cpp
   libtests_int.s
+  libtests_fuse.cpp
+  libtests_fuse.s
   )
 
 add_executable(test_br_call2 test_br_call2.cpp)
