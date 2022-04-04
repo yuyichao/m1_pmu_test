@@ -1,4 +1,4 @@
 inst_addw: 1.0
+inst_add3x: 4.0
 inst_bcond: 1.0
 inst_cmpw: 1.0
-inst_addx: 4.0

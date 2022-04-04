@@ -26,7 +26,7 @@ function add_add_test(grp, n)
         cmp w1, w0
         bne .Lloop%=
         ret
-""", Dict("inst_addx"=>n, "inst_addw"=>1, "inst_cmpw"=>1, "inst_bcond"=>1))
+""", Dict("inst_add3x"=>n, "inst_addw"=>1, "inst_cmpw"=>1, "inst_bcond"=>1))
 end
 
 function add_mul_test(grp, n)
@@ -39,7 +39,7 @@ function add_mul_test(grp, n)
         cmp w1, w0
         bne .Lloop%=
         ret
-""", Dict("inst_mulx"=>n, "inst_addw"=>1, "inst_cmpw"=>1, "inst_bcond"=>1))
+""", Dict("inst_mul3x"=>n, "inst_addw"=>1, "inst_cmpw"=>1, "inst_bcond"=>1))
 end
 
 function add_udiv_test(grp, n)
@@ -52,7 +52,7 @@ function add_udiv_test(grp, n)
         cmp w1, w0
         bne .Lloop%=
         ret
-""", Dict("inst_udivx"=>n, "inst_addw"=>1, "inst_cmpw"=>1, "inst_bcond"=>1))
+""", Dict("inst_udiv3x"=>n, "inst_addw"=>1, "inst_cmpw"=>1, "inst_bcond"=>1))
 end
 
 function add_madd_test(grp, n)
@@ -67,7 +67,7 @@ function add_madd_test(grp, n)
         cmp w1, w0
         bne .Lloop%=
         ret
-""", Dict("inst_maddx"=>n, "inst_addw"=>1, "inst_cmpw"=>1, "inst_bcond"=>1))
+""", Dict("inst_madd3x"=>n, "inst_addw"=>1, "inst_cmpw"=>1, "inst_bcond"=>1))
 end
 
 function add_crc32c_test(grp, n)
