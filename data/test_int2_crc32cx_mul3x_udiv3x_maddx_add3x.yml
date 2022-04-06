@@ -1,0 +1,8 @@
+inst_addw: 1.0
+inst_crc32cx: 1.0
+inst_bcond: 1.0
+inst_maddx: 1.0
+inst_add3x: 1.0
+inst_cmpw: 1.0
+inst_mul3x: 1.0
+inst_udiv3x: 1.0
