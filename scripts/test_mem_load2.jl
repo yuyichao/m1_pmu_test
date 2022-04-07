@@ -58,7 +58,7 @@ end
 function run_all(idx_begin, idx_end, loops)
     for i in idx_begin:idx_end
         println("Index: $i")
-        @time run_all_sizes(idx, loops)
+        @time run_all_sizes(i, loops)
     end
 end
 
