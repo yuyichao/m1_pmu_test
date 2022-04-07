@@ -40,14 +40,24 @@ function run_size(sz, i, loops)
 end
 
 const loops_small = [1, 400_000, 700_000, 1000_000]
+const loops_mid = [1, 1000_000, 2_000_000, 3_000_000]
 const loops_big = [1, 2000_000, 3_500_000, 5_000_000]
 
 function run_all_sizes(idx, sizes)
     for sz in sizes
+        loops = if sz < 400_000 * 16
+            loops_small
+        elseif  sz < 1000_000 * 16
+            loops_mid
+        else
+            loops_big
+        end
         if idx % 50 == 0
             println(sz)
+            @time run_size(sz, idx, loops)
+        else
+            run_size(sz, idx, loops)
         end
-        run_size(sz, idx, sz >= 400_000 * 16 ? loops_big : loops_small)
     end
 end
 
