@@ -51,6 +51,9 @@ function run_all_sizes(idx, loops)
         if sz in prev_size
             continue
         end
+        if idx % 50 == 0
+            println(sz)
+        end
         run_size(sz, idx, loops)
     end
 end
