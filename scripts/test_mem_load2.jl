@@ -31,8 +31,8 @@ function run_and_save(file, randomize, sz, loops)
 end
 
 function run_size(sz, i, loops)
-    dir_reg = joinpath(@__DIR__, "..", "data", "test_mem_load_regular_$sz")
-    dir_rand = joinpath(@__DIR__, "..", "data", "test_mem_load_randomize_$sz")
+    dir_reg = joinpath(@__DIR__, "..", "data", "test_mem_load2_regular_$sz")
+    dir_rand = joinpath(@__DIR__, "..", "data", "test_mem_load2_randomize_$sz")
     mkpath(dir_reg, mode=0o755)
     mkpath(dir_rand, mode=0o755)
     run_and_save(joinpath(dir_reg, "$(i).csv"), false, sz, loops)
