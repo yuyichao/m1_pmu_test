@@ -39,30 +39,24 @@ function run_size(sz, i, loops)
     run_and_save(joinpath(dir_rand, "$(i).csv"), true, sz, loops)
 end
 
-const prev_size = Set([4 * 1024, 8 * 1024, # < L1d
-                       128 * 1024, 512 * 1024, # < L2
-                       7 * 512 * 1024, # system cache?
-                       16 * 1024 * 1024 # main memory
-                       ]);
+const loops_small = [1, 400_000, 700_000, 1000_000]
+const loops_big = [1, 3000_000, 5_500_000, 8_000_000]
 
-function run_all_sizes(idx, loops)
-    for i in 6:25
-        sz = 2^i
-        if sz in prev_size
-            continue
-        end
+function run_all_sizes(idx, sizes)
+    for sz in sizes
         if idx % 50 == 0
             println(sz)
         end
-        run_size(sz, idx, loops)
+        run_size(sz, idx, sz >= 400_000 * 16 ? loops_big : loops_small)
     end
 end
 
-function run_all(idx_begin, idx_end, loops)
+function run_all(idx_begin, idx_end)
+    sizes = sort!([2.^(5:24); 6 * 512 * 1024; 7 * 512 * 1024])
     for i in idx_begin:idx_end
         println("Index: $i")
-        @time run_all_sizes(i, loops)
+        @time run_all_sizes(i, sizes)
     end
 end
 
-run_all(parse(Int, ARGS[1]), parse(Int, ARGS[2]), [1, 1000, 1000_000, 100_000_000])
+run_all(parse(Int, ARGS[1]), parse(Int, ARGS[2]))
