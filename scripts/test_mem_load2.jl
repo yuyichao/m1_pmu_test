@@ -30,7 +30,7 @@ function run_and_save(file, randomize, sz, loops)
     end
 end
 
-function run_size(sz, idx, loops)
+function run_size(sz, i, loops)
     dir_reg = joinpath(@__DIR__, "..", "data", "test_mem_load_regular_$sz")
     dir_rand = joinpath(@__DIR__, "..", "data", "test_mem_load_randomize_$sz")
     mkpath(dir_reg, mode=0o755)
