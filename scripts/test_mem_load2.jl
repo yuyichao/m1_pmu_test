@@ -52,7 +52,7 @@ function run_all_sizes(idx, sizes)
 end
 
 function run_all(idx_begin, idx_end)
-    sizes = sort!([2.^(5:24); 6 * 512 * 1024; 7 * 512 * 1024])
+    sizes = sort!([2 .^ (5:24); 6 * 512 * 1024; 7 * 512 * 1024])
     for i in idx_begin:idx_end
         println("Index: $i")
         @time run_all_sizes(i, sizes)
