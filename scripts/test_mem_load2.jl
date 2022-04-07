@@ -40,7 +40,7 @@ function run_size(sz, i, loops)
 end
 
 const loops_small = [1, 400_000, 700_000, 1000_000]
-const loops_big = [1, 3000_000, 5_500_000, 8_000_000]
+const loops_big = [1, 2000_000, 3_500_000, 5_000_000]
 
 function run_all_sizes(idx, sizes)
     for sz in sizes
