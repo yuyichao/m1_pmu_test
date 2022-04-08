@@ -103,7 +103,7 @@ function run_all_sizes(idx, sizes)
 end
 
 function run_all(idx_begin, idx_end)
-    sizes = [(4:32) .* (512 * 1024)]
+    sizes = [(4:32) .* (512 * 1024);]
     for i in idx_begin:idx_end
         println("Index: $i")
         @time run_all_sizes(i, sizes)
