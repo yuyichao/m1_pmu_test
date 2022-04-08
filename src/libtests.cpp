@@ -63,3 +63,37 @@ extern "C" void mem_load_test(const volatile int *_buff, int n,
         }
     }, n, ice_res, fire_res);
 }
+
+static inline uint64_t xorshift64s(uint64_t &x)
+{
+    x ^= x >> 12; // a
+    x ^= x << 25; // b
+    x ^= x >> 27; // c
+    return x * 0x2545F4914F6CDD1DULL;
+}
+
+extern "C" void mem_load_test2(const volatile int *_buff, uint64_t _seed, uint32_t _sz,
+                               int n, int64_t *ice_res, int64_t *fire_res)
+{
+    return run_multi([&] (int n) {
+        auto buff = _buff;
+        auto seed = _seed;
+        auto sz = _sz;
+        for (int i = 0; i < n; i++) {
+            buff[(xorshift64s(seed) + i) % sz];
+        }
+    }, n, ice_res, fire_res);
+}
+
+extern "C" void mem_store_test2(volatile int *_buff, uint64_t _seed, uint32_t _sz,
+                                int n, int64_t *ice_res, int64_t *fire_res)
+{
+    return run_multi([&] (int n) {
+        auto buff = _buff;
+        auto seed = _seed;
+        auto sz = _sz;
+        for (int i = 0; i < n; i++) {
+            buff[(xorshift64s(seed) + i) % sz] = i;
+        }
+    }, n, ice_res, fire_res);
+}
