@@ -21,7 +21,7 @@ function run_store_loops(loops, randomize, page, sz)
     nloops = length(loops)
     res = zeros(Int64, 256, length(loops) * 2)
     for i in 1:nloops
-        mem_store_test2!(sz, page ? 16 * 1024 : 1, loops[i], randomize,
+        mem_store_test3!(sz, page ? 16 * 1024 : 1, loops[i], randomize,
                          @view(res[:, i * 2 - 1]), @view(res[:, i * 2]))
     end
     return res
