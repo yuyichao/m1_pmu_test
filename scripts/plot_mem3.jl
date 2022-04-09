@@ -68,7 +68,7 @@ const ls_cycle = ["-", "--", "-.", ":"]
 
 function get_fmt(i)
     ls = ls_cycle[((i - 1) ÷ 10) % 4 + 1]
-    return "C$((i - 1) % 10)$ls"
+    return "C$((i - 1) % 10).$ls"
 end
 
 function plot_diff(sizes, ice_evt_diff, fire_evt_diff)
@@ -81,7 +81,7 @@ function plot_diff(sizes, ice_evt_diff, fire_evt_diff)
         plot(sizes, diff, get_fmt(i), label="$(evt)")
     end
     axvline(64 * 1024, color="r")
-    axvline(160 * 16 * 1024, color="g", alpha=0.5)
+    axvline(128 * 16 * 1024, color="g", alpha=0.5)
     axvline(4 * 1024^2, color="g")
     axvline(16 * 1024^2, color="b")
     gca()[:set_xscale]("log")
