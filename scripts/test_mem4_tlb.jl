@@ -86,7 +86,7 @@ function run_store_size(sz, i, loops)
     run_store_and_save(joinpath(dir_rand, "$(i).csv"), true, sz, loops)
 end
 
-const loops = [1, 1000, 30_000, 1000_000]
+const loops = [1, 1000, 10_000, 100_000]
 
 function run_all_sizes(idx, sizes)
     for sz in sizes
