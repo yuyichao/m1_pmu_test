@@ -2,6 +2,7 @@
 
 using DelimitedFiles
 using PyPlot
+using NaCsPlot
 
 function load(file)
     return readdlm(file, ',', Float64, skipstart=1)
@@ -31,15 +32,19 @@ function compute_diff(counts)
     return diff
 end
 
+function check_diff(diff)
+    if all(x->abs(x) <= 0.06, diff)
+        return false
+    elseif any(x->x < -0.04, diff)
+        return false
+    end
+    return true
+end
+
 function filter_diff!(evt_diff)
     for evt in 0:255
-        if evt == 2
-            continue
-        end
         diff = evt_diff[evt]
         if all(x->abs(x) <= 0.06, diff)
-            delete!(evt_diff, evt)
-        elseif any(x->abs(x) > 4, diff)
             delete!(evt_diff, evt)
         elseif any(x->x < -0.04, diff)
             delete!(evt_diff, evt)
@@ -59,8 +64,6 @@ function resort_data(diff)
             push!(fire_evt_diff[evt], d[i, 3])
         end
     end
-    filter_diff!(ice_evt_diff)
-    filter_diff!(fire_evt_diff)
     return sizes, ice_evt_diff, fire_evt_diff
 end
 
@@ -71,41 +74,58 @@ function get_fmt(i)
     return "C$((i - 1) % 10)$ls"
 end
 
-function plot_diff(sizes, ice_evt_diff, fire_evt_diff)
+function plot_all_diff(name, sizes, ice_evt_diff, fire_evt_diff)
     figure(figsize=[12.6, 5.6])
     subplot(1, 2, 1)
-    ice_evts = sort!(collect(keys(ice_evt_diff)))
-    for i in 1:length(ice_evts)
-        evt = ice_evts[i]
+    ice_idx = 0
+    for evt in 0:255
         diff = ice_evt_diff[evt]
-        plot(sizes, diff, get_fmt(i), label="$(evt)")
+        if !check_diff(diff)
+            continue
+        end
+        ice_idx += 1
+        plot(sizes, diff, get_fmt(ice_idx), label="$(evt)")
     end
-    axvline(160, color="r")
-    axvline(256, color="r")
-    axvline(3072, color="g")
+    axvline(128, color="r")
+    axvline(1024, color="g")
     gca()[:set_xscale]("log")
-    # xlim([1024, 2^26])
-    legend(ncol=4)
+    xlim([64, 32 * 256])
+    ylim([0, ylim()[2]])
+    xlabel("Pages")
+    ylabel("Count Difference")
+    legend(ncol=6, fontsize=8)
+    title("Ice Storm ($name)")
     subplot(1, 2, 2)
-    fire_evts = sort!(collect(keys(fire_evt_diff)))
-    for i in 1:length(fire_evts)
-        evt = fire_evts[i]
+    fire_idx = 0
+    for evt in 0:255
         diff = fire_evt_diff[evt]
-        plot(sizes, diff, get_fmt(i), label="$(evt)")
+        if !check_diff(diff)
+            continue
+        end
+        fire_idx += 1
+        plot(sizes, diff, get_fmt(fire_idx), label="$(evt)")
     end
     axvline(160, color="r")
-    axvline(256, color="r")
     axvline(3072, color="g")
     gca()[:set_xscale]("log")
-    # xlim([1024, 2^26])
-    legend(ncol=4)
+    xlim([64, 32 * 256])
+    ylim([0, ylim()[2]])
+    xlabel("Page Count")
+    ylabel("Count Difference")
+    legend(ncol=6, fontsize=8)
+    title("Fire Storm ($name)")
+    tight_layout()
 end
 
 const raw_data = load_all(joinpath(@__DIR__, "../data"))
 const diff_data = (load=compute_diff(raw_data.load), store=compute_diff(raw_data.store))
 const resorted_data = (load=resort_data(diff_data.load), store=resort_data(diff_data.store))
 
-plot_diff(resorted_data.load...)
-plot_diff(resorted_data.store...)
+const prefix = joinpath(@__DIR__, "../imgs/mem5_tlb")
 
-show()
+plot_all_diff("Load", resorted_data.load...)
+NaCsPlot.maybe_save("$(prefix)_all_load")
+plot_all_diff("Store", resorted_data.store...)
+NaCsPlot.maybe_save("$(prefix)_all_store")
+
+NaCsPlot.maybe_show()
