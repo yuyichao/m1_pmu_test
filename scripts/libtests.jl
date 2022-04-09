@@ -82,3 +82,17 @@ function mem_store_test3!(sz, stride, n, randomize, ice_res, fire_res)
           Cvoid, (Ptr{Cint}, UInt64, UInt32, UInt64, Cint, Ptr{Int64}, Ptr{Int64}),
           buff, randomize ? rand(1:typemax(UInt64)) : UInt64(0), sz, stride, n, ice_res, fire_res)
 end
+
+function mem_load_test4!(sz, stride, n, randomize, ice_res, fire_res)
+    buff = zeros(Cint, sz * stride)
+    ccall((:mem_load_test4, "./libpmu_test.so"),
+          Cvoid, (Ptr{Cint}, UInt64, UInt32, UInt64, Cint, Ptr{Int64}, Ptr{Int64}),
+          buff, randomize ? rand(1:typemax(UInt64)) : UInt64(0), sz, stride, n, ice_res, fire_res)
+end
+
+function mem_store_test4!(sz, stride, n, randomize, ice_res, fire_res)
+    buff = zeros(Cint, sz * stride)
+    ccall((:mem_store_test4, "./libpmu_test.so"),
+          Cvoid, (Ptr{Cint}, UInt64, UInt32, UInt64, Cint, Ptr{Int64}, Ptr{Int64}),
+          buff, randomize ? rand(1:typemax(UInt64)) : UInt64(0), sz, stride, n, ice_res, fire_res)
+end

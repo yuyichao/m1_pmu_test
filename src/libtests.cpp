@@ -125,3 +125,33 @@ extern "C" void mem_store_test3(volatile int *_buff, uint64_t _seed, uint32_t _s
         }
     }, n, ice_res, fire_res);
 }
+
+extern "C" void mem_load_test4(const volatile int *_buff, uint64_t _seed, uint32_t _sz,
+                               uint64_t _stride, int n, int64_t *ice_res, int64_t *fire_res)
+{
+    return run_multi([&] (int n) {
+        auto buff = _buff;
+        auto seed = _seed;
+        auto sz = _sz;
+        auto stride = _stride;
+        for (int i = 0; i < n; i++) {
+            auto v = xorshift64s(seed) + i;
+            buff[(v % sz) * stride + v % stride];
+        }
+    }, n, ice_res, fire_res);
+}
+
+extern "C" void mem_store_test4(volatile int *_buff, uint64_t _seed, uint32_t _sz,
+                                uint64_t _stride, int n, int64_t *ice_res, int64_t *fire_res)
+{
+    return run_multi([&] (int n) {
+        auto buff = _buff;
+        auto seed = _seed;
+        auto sz = _sz;
+        auto stride = _stride;
+        for (int i = 0; i < n; i++) {
+            auto v = xorshift64s(seed) + i;
+            buff[(v % sz) * stride + v % stride] = i;
+        }
+    }, n, ice_res, fire_res);
+}
