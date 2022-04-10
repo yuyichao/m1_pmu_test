@@ -161,7 +161,7 @@ extern "C" void mem_load_test5(uint64_t _seed, uint32_t _sz, uint64_t _stride,
 {
     auto _buff = mmap(nullptr, _sz * sizeof(int) * _stride, PROT_READ | PROT_WRITE,
                       MAP_ANONYMOUS, -1, 0);
-    return run_multi([&] (int n) {
+    run_multi([&] (int n) {
         auto buff = (const volatile int*)_buff;
         auto seed = _seed;
         auto sz = _sz;
@@ -171,6 +171,7 @@ extern "C" void mem_load_test5(uint64_t _seed, uint32_t _sz, uint64_t _stride,
             buff[idx * stride + idx % stride];
         }
     }, n, ice_res, fire_res);
+    munmap(_buff, _sz * sizeof(int) * _stride);
 }
 
 extern "C" void mem_store_test5(uint64_t _seed, uint32_t _sz, uint64_t _stride,
@@ -178,7 +179,7 @@ extern "C" void mem_store_test5(uint64_t _seed, uint32_t _sz, uint64_t _stride,
 {
     auto _buff = mmap(nullptr, _sz * sizeof(int) * _stride, PROT_READ | PROT_WRITE,
                       MAP_ANONYMOUS, -1, 0);
-    return run_multi([&] (int n) {
+    run_multi([&] (int n) {
         auto buff = (const volatile int*)_buff;
         auto seed = _seed;
         auto sz = _sz;
@@ -188,4 +189,5 @@ extern "C" void mem_store_test5(uint64_t _seed, uint32_t _sz, uint64_t _stride,
             buff[idx * stride + idx % stride] = i;
         }
     }, n, ice_res, fire_res);
+    munmap(_buff, _sz * sizeof(int) * _stride);
 }
