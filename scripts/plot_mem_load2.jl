@@ -31,15 +31,14 @@ end
 
 function filter_diff!(evt_diff)
     for evt in 0:255
-        if evt == 2
-            continue
-        end
         diff = evt_diff[evt]
         if all(x->abs(x) <= 0.06, diff)
             delete!(evt_diff, evt)
         elseif any(x->abs(x) > 4, diff)
             delete!(evt_diff, evt)
         elseif any(x->x < -0.04, diff)
+            delete!(evt_diff, evt)
+        elseif evt == 5 || evt == 11 || evt == 193
             delete!(evt_diff, evt)
         end
     end
@@ -66,7 +65,7 @@ const ls_cycle = ["-", "--", "-.", ":"]
 
 function get_fmt(i)
     ls = ls_cycle[((i - 1) ÷ 10) % 4 + 1]
-    return "C$((i - 1) % 10)$ls"
+    return "C$((i - 1) % 10).$ls"
 end
 
 function plot_diff(sizes, ice_evt_diff, fire_evt_diff)
@@ -79,8 +78,8 @@ function plot_diff(sizes, ice_evt_diff, fire_evt_diff)
         plot(sizes, diff, get_fmt(i), label="$(evt)")
     end
     axvline(64 * 1024, color="r")
-    axvline(2 * 1024^2, color="g", alpha=0.2)
-    axvline(4 * 1024^2, color="g", alpha=0.2)
+    axvline(128 * 16 * 1024, color="g", alpha=0.5)
+    axvline(4 * 1024^2, color="g")
     axvline(16 * 1024^2, color="b")
     gca()[:set_xscale]("log")
     xlim([1024, 2^26])
@@ -93,10 +92,8 @@ function plot_diff(sizes, ice_evt_diff, fire_evt_diff)
         plot(sizes, diff, get_fmt(i), label="$(evt)")
     end
     axvline(128 * 1024, color="r")
-    axvline(2 * 1024^2, color="g", alpha=0.2)
-    axvline(4 * 1024^2, color="g", alpha=0.2)
-    axvline(8 * 1024^2, color="g", alpha=0.2)
-    axvline(12 * 1024^2, color="g", alpha=0.2)
+    axvline(160 * 16 * 1024, color="g", alpha=0.5)
+    axvline(12 * 1024^2, color="g")
     axvline(16 * 1024^2, color="b")
     gca()[:set_xscale]("log")
     xlim([1024, 2^26])

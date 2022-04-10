@@ -8,15 +8,15 @@ function load(file)
 end
 
 function load_all(dir)
-    regex = r"/test_mem_(load|store)3_(regular|randomize)_([0-9]*)_summary_fit.csv$"
-    res = (load=(rand=Dict{Int,Matrix{Float64}}(), reg=Dict{Int,Matrix{Float64}}()),
-           store=(rand=Dict{Int,Matrix{Float64}}(), reg=Dict{Int,Matrix{Float64}}()))
+    regex = r"/test_mem_(load|store)4_(page|dense)_randomize_([0-9]*)_summary_fit.csv$"
+    res = (load=(page=Dict{Int,Matrix{Float64}}(), dense=Dict{Int,Matrix{Float64}}()),
+           store=(page=Dict{Int,Matrix{Float64}}(), dense=Dict{Int,Matrix{Float64}}()))
     for f in readdir(dir, join=true)
         m = match(regex, f)
         m === nothing && continue
-        sz = parse(Int, m[3]) * 4
+        sz = parse(Int, m[3])
         res1 = m[1] == "load" ? res.load : res.store
-        res2 = m[2] == "regular" ? res1.reg : res1.rand
+        res2 = m[2] == "dense" ? res1.dense : res1.page
         res2[sz] = load(f)
     end
     return res
@@ -24,9 +24,9 @@ end
 
 function compute_diff(counts)
     diff = Dict{Int,Matrix{Float64}}()
-    for (sz, rand_data) in counts.rand
-        reg_data = counts.reg[sz]
-        diff[sz] = [rand_data[:, 1] rand_data[:, 3] .- reg_data[:, 3] rand_data[:, 7] .- reg_data[:, 7]]
+    for (sz, page_data) in counts.page
+        dense_data = counts.dense[sz]
+        diff[sz] = [page_data[:, 1] page_data[:, 3] .- dense_data[:, 3] page_data[:, 7] .- dense_data[:, 7]]
     end
     return diff
 end
@@ -39,8 +39,6 @@ function filter_diff!(evt_diff)
         elseif any(x->abs(x) > 4, diff)
             delete!(evt_diff, evt)
         elseif any(x->x < -0.04, diff)
-            delete!(evt_diff, evt)
-        elseif evt == 5 || evt == 11 || evt == 193
             delete!(evt_diff, evt)
         end
     end
@@ -67,7 +65,7 @@ const ls_cycle = ["-", "--", "-.", ":"]
 
 function get_fmt(i)
     ls = ls_cycle[((i - 1) ÷ 10) % 4 + 1]
-    return "C$((i - 1) % 10).$ls"
+    return "C$((i - 1) % 10)$ls"
 end
 
 function plot_diff(sizes, ice_evt_diff, fire_evt_diff)
@@ -79,12 +77,10 @@ function plot_diff(sizes, ice_evt_diff, fire_evt_diff)
         diff = ice_evt_diff[evt]
         plot(sizes, diff, get_fmt(i), label="$(evt)")
     end
-    axvline(64 * 1024, color="r")
-    axvline(128 * 16 * 1024, color="g", alpha=0.5)
-    axvline(4 * 1024^2, color="g")
-    axvline(16 * 1024^2, color="b")
+    axvline(128, color="r")
+    axvline(1024, color="g")
     gca()[:set_xscale]("log")
-    xlim([1024, 2^26])
+    # xlim([1024, 2^26])
     legend(ncol=4)
     subplot(1, 2, 2)
     fire_evts = sort!(collect(keys(fire_evt_diff)))
@@ -93,12 +89,10 @@ function plot_diff(sizes, ice_evt_diff, fire_evt_diff)
         diff = fire_evt_diff[evt]
         plot(sizes, diff, get_fmt(i), label="$(evt)")
     end
-    axvline(128 * 1024, color="r")
-    axvline(160 * 16 * 1024, color="g", alpha=0.5)
-    axvline(12 * 1024^2, color="g")
-    axvline(16 * 1024^2, color="b")
+    axvline(160, color="r")
+    axvline(3072, color="g")
     gca()[:set_xscale]("log")
-    xlim([1024, 2^26])
+    # xlim([1024, 2^26])
     legend(ncol=4)
 end
 
