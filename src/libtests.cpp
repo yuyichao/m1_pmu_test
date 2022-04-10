@@ -155,3 +155,37 @@ extern "C" void mem_store_test4(volatile int *_buff, uint64_t _seed, uint32_t _s
         }
     }, n, ice_res, fire_res);
 }
+
+extern "C" void mem_load_test5(uint64_t _seed, uint32_t _sz, uint64_t _stride,
+                               int n, int64_t *ice_res, int64_t *fire_res)
+{
+    auto _buff = mmap(nullptr, _sz * sizeof(int) * _stride, PROT_READ | PROT_WRITE,
+                      MAP_ANONYMOUS, -1, 0);
+    return run_multi([&] (int n) {
+        auto buff = (const volatile int*)_buff;
+        auto seed = _seed;
+        auto sz = _sz;
+        auto stride = _stride;
+        for (int i = 0; i < n; i++) {
+            auto idx = (xorshift64s(seed) + i) % sz;
+            buff[idx * stride + idx % stride];
+        }
+    }, n, ice_res, fire_res);
+}
+
+extern "C" void mem_store_test5(uint64_t _seed, uint32_t _sz, uint64_t _stride,
+                                int n, int64_t *ice_res, int64_t *fire_res)
+{
+    auto _buff = mmap(nullptr, _sz * sizeof(int) * _stride, PROT_READ | PROT_WRITE,
+                      MAP_ANONYMOUS, -1, 0);
+    return run_multi([&] (int n) {
+        auto buff = (const volatile int*)_buff;
+        auto seed = _seed;
+        auto sz = _sz;
+        auto stride = _stride;
+        for (int i = 0; i < n; i++) {
+            auto idx = (xorshift64s(seed) + i) % sz;
+            buff[idx * stride + idx % stride] = i;
+        }
+    }, n, ice_res, fire_res);
+}
