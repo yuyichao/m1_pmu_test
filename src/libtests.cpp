@@ -193,3 +193,28 @@ extern "C" void mem_store_test5(uint64_t _seed, uint32_t _sz, uint64_t _stride,
     }, n, ice_res, fire_res);
     munmap(_buff, _sz * sizeof(int) * _stride);
 }
+
+extern "C" void mem_call_test(uint64_t _seed, uint32_t _sz, uint64_t _stride,
+                              int n, int64_t *ice_res, int64_t *fire_res)
+{
+    auto nele = _sz * _stride;
+    auto _buff = mmap(nullptr, nele * sizeof(int), PROT_READ | PROT_WRITE,
+                      MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    for (uint64_t i = 0; i < nele; i++)
+        _buff[i] = 0xd65f03c0; // ret
+    mprotect(_buff, nele * sizeof(int), PROT_READ | PROT_EXEC);
+    run_multi([&] (int n) {
+        auto buff = (const volatile int*)_buff;
+        auto seed = _seed;
+        auto sz = _sz;
+        auto stride = _stride;
+        for (int i = 0; i < n; i++) {
+            auto idx = (xorshift64s(seed) + i) % sz;
+            auto ptr = &buff[idx * stride + idx % stride];
+            // Use inline assembly to let the compiler know that we are not modifying
+            // any register but the link register.
+            asm volatile ("blr %0" :: "r"(ptr) : "r30", "memory");
+        }
+    }, n, ice_res, fire_res);
+    munmap(_buff, nele * sizeof(int));
+}
