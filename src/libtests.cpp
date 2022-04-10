@@ -2,6 +2,8 @@
 
 #include "libtests.h"
 
+#include <sys/mman.h>
+
 int icestorm_core = 0;
 int firestorm_core = 0;
 
@@ -179,7 +181,7 @@ extern "C" void mem_store_test5(uint64_t _seed, uint32_t _sz, uint64_t _stride,
     auto _buff = mmap(nullptr, _sz * sizeof(int) * _stride, PROT_READ | PROT_WRITE,
                       MAP_ANONYMOUS, -1, 0);
     return run_multi([&] (int n) {
-        auto buff = (const volatile int*)_buff;
+        auto buff = (volatile int*)_buff;
         auto seed = _seed;
         auto sz = _sz;
         auto stride = _stride;
