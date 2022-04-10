@@ -198,13 +198,13 @@ extern "C" void mem_call_test(uint64_t _seed, uint32_t _sz, uint64_t _stride,
                               int n, int64_t *ice_res, int64_t *fire_res)
 {
     auto nele = _sz * _stride;
-    auto _buff = mmap(nullptr, nele * sizeof(int), PROT_READ | PROT_WRITE,
-                      MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    auto _buff = (int*)mmap(nullptr, nele * sizeof(int), PROT_READ | PROT_WRITE,
+                            MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
     for (uint64_t i = 0; i < nele; i++)
         _buff[i] = 0xd65f03c0; // ret
     mprotect(_buff, nele * sizeof(int), PROT_READ | PROT_EXEC);
     run_multi([&] (int n) {
-        auto buff = (const volatile int*)_buff;
+        auto buff = _buff;
         auto seed = _seed;
         auto sz = _sz;
         auto stride = _stride;
