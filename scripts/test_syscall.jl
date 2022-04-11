@@ -30,7 +30,7 @@ function run_and_save(file, loops)
     end
 end
 
-function run_and_save(loops)
+function run_and_save(i, loops)
     dir = joinpath(@__DIR__, "..", "data", "test_syscall")
     mkpath(dir, mode=0o755)
     run_call_and_save(joinpath(dir, "$(i).csv"), loops)
@@ -41,7 +41,7 @@ const loops = [1, 100, 1000, 10_000]
 function run_all(idx_begin, idx_end)
     for i in idx_begin:idx_end
         println("Index: $i")
-        @time run_and_save(loops)
+        @time run_and_save(i, loops)
     end
 end
 
