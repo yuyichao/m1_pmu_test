@@ -33,7 +33,7 @@ end
 function run_and_save(i, loops)
     dir = joinpath(@__DIR__, "..", "data", "test_syscall")
     mkpath(dir, mode=0o755)
-    run_call_and_save(joinpath(dir, "$(i).csv"), loops)
+    run_and_save(joinpath(dir, "$(i).csv"), loops)
 end
 
 const loops = [1, 100, 1000, 10_000]
