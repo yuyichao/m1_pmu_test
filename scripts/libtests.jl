@@ -119,3 +119,8 @@ function syscall_test!(n, ice_res, fire_res)
     ccall((:syscall_test, "./libpmu_test.so"),
           Cvoid, (Cint, Ptr{Int64}, Ptr{Int64}), n, ice_res, fire_res)
 end
+
+function syscall_clock_gettime_test!(n, ice_res, fire_res)
+    ccall((:syscall_clock_gettime_test, "./libpmu_test.so"),
+          Cvoid, (Cint, Ptr{Int64}, Ptr{Int64}), n, ice_res, fire_res)
+end

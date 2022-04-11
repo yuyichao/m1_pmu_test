@@ -229,3 +229,13 @@ extern "C" void syscall_test(int n, int64_t *ice_res, int64_t *fire_res)
         }
     }, n, ice_res, fire_res);
 }
+
+extern "C" void syscall_clock_gettime_test(int n, int64_t *ice_res, int64_t *fire_res)
+{
+    run_multi([&] (int n) {
+        struct timespec ts;
+        for (int i = 0; i < n; i++) {
+            syscall(SYS_clock_gettime, CLOCK_MONOTONIC, &ts);
+        }
+    }, n, ice_res, fire_res);
+}
