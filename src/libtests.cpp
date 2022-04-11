@@ -3,6 +3,8 @@
 #include "libtests.h"
 
 #include <sys/mman.h>
+#include <sys/syscall.h>
+#include <unistd.h>
 
 int icestorm_core = 0;
 int firestorm_core = 0;
@@ -217,4 +219,13 @@ extern "C" void mem_call_test(uint64_t _seed, uint32_t _sz, uint64_t _stride,
         }
     }, n, ice_res, fire_res);
     munmap(_buff, nele * sizeof(int));
+}
+
+extern "C" void syscall_test(int n, int64_t *ice_res, int64_t *fire_res)
+{
+    run_multi([&] (int n) {
+        for (int i = 0; i < n; i++) {
+            syscall(SYS_gettid);
+        }
+    }, n, ice_res, fire_res);
 }

@@ -114,3 +114,8 @@ function mem_call_test!(sz, stride, n, randomize, ice_res, fire_res)
           Cvoid, (UInt64, UInt32, UInt64, Cint, Ptr{Int64}, Ptr{Int64}),
           randomize ? rand(1:typemax(UInt64)) : UInt64(0), sz, stride, n, ice_res, fire_res)
 end
+
+function syscall_test!(n, ice_res, fire_res)
+    ccall((:syscall_test, "./libpmu_test.so"),
+          Cvoid, (Cint, Ptr{Int64}, Ptr{Int64}), n, ice_res, fire_res)
+end
