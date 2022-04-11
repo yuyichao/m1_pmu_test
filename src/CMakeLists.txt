@@ -1,5 +1,7 @@
 #
 
+add_definitions(-fno-plt)
+
 add_executable(print_cache print_cache.cpp)
 
 add_executable(test_lxsx test_lxsx.cpp)
