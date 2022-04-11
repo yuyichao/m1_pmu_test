@@ -55,3 +55,5 @@ add_executable(test_load_fp128 test_load_fp128.cpp)
 add_executable(test_store_fp32 test_store_fp32.cpp)
 add_executable(test_store_fp64 test_store_fp64.cpp)
 add_executable(test_store_fp128 test_store_fp128.cpp)
+
+add_executable(test_syscall test_syscall.cpp)
